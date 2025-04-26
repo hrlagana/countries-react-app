@@ -1,0 +1,7 @@
+#root {
+  background-image: url(/src/assets/world_map.jpg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  background-attachment: fixed;
+}

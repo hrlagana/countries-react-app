@@ -1,4 +1,3 @@
-import { Country } from "@/typings";
 import { filterCountriesByCode } from "./filter.util";
 
 const mockCountries = [

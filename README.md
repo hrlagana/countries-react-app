@@ -34,3 +34,5 @@ Your app will be running at http://localhost:5173 (which is vite's default port)
 ```bash
 npm run test
 ```
+4. Deployment
+- You can also check the deployed version of the app on (https://county-code.netlify.app)

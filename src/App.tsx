@@ -1,11 +1,21 @@
 import Countries from './customComponents/Countries'
 
 import './App.css'
+import { Toaster } from 'sonner'
 
 function App() {
 
   return (
-    <Countries />
+    <>
+      <Toaster 
+        toastOptions={{
+          style: {
+            color: 'red'
+          },
+        }}
+      />
+      <Countries />
+    </>
   )
 }
 

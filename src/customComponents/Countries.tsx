@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useQuery, useLazyQuery  } from '@apollo/client';
+import { toast } from 'sonner';
 import { GET_COUNTRIES, GET_COUNTRY_BY_CODE } from '@/graphql/queries';
 import { Card, CardContent } from '@/components/ui/card';
 import { filterCountriesByCode } from '@/utils/filter.util';
@@ -8,6 +9,7 @@ import CountryTable from './CountryTable';
 import LoadingState from './LoadingState';
 import ErrorState from './ErrorState';
 import { Country } from '@/typings';
+import { sanitizeInput } from '@/utils/sanitizeInput';
 
 const Countries = () => {
   const { data, loading, error } = useQuery(GET_COUNTRIES);
@@ -43,6 +45,13 @@ const Countries = () => {
     }
   }, [countryData, debouncedFilter]);
 
+  const handleFilterChange = (input: string) => {
+    const sanitized = sanitizeInput(input);
+    if (input !== sanitized) {
+      toast.warning('Special characters removed from input');
+    }
+    setFilterText(sanitized);  
+  };
 
   if (loading) return <LoadingState />;
   if (error) return <ErrorState message={error.message} />;
@@ -55,7 +64,7 @@ const Countries = () => {
     <div className="p-4 max-w-4xl mx-auto space-y-4 min-h-screen">
       <Card>
         <CardContent className="p-4">
-          <CountryFilter filter={filterText} onChange={setFilterText} />
+          <CountryFilter filter={filterText} onChange={handleFilterChange} />
         </CardContent>
       </Card>
 
